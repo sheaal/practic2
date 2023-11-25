@@ -1,0 +1,21 @@
+{% extends "layout/basic.html" %}
+
+
+{% block content %}
+  <h2>Последние 4 объявлений</h2>
+  {% for applic in bbs %}
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{applic.image.url}}" alt="{{bbs.title}}">
+      <div class="card-body">
+        <h5 class="card-title">Название карточки: {{applic.title}}</h5>
+        <p class="card-text">Категория: {{applic.category}}</p>
+        <p class="card-text">Дата: {{applic.data}}</p>
+      </div>
+    </div>
+  {% empty %}
+    <p>На данный момент заявок нет</p>
+  {% endfor %}
+<p>Количество заявок, находящихся в статусе «Принято в работу»: {{ count }}</p>
+{% endblock %}
+
+

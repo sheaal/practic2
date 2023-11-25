@@ -1,0 +1,48 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='slim' %}
+  <title>{% block title %} Главная {% endblock %} - Электронная доска объявлений </title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="d-flex flex-column flex-md-row p-3 px-md-4 mb-3  bg-white border-bottom box-shadow">
+      <h5 class="mr-md-auto p-2"><a class="nav-link root" href="{% url 'main:index' %}">Дизайн</a></h5>
+      <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Профиль</a>
+          <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'main:profile' %}">Мои объявления</a>
+              {% if user.is_staff %}
+                  <a class="dropdown-item" href="{% url 'main:category_list' %}">Все категории</a>
+                  <a class="dropdown-item" href="{% url 'main:request_all' %}">Изменение статуса заявок</a>{% endif %}
+              <a class="dropdown-item" href="{% url 'main:logout' %}">Выйти</a>
+              <div class="dropdown-divider"></div>
+          </div>
+      </div>
+      <a class="p-2 text-dark" href="{% url 'main:register' %}">Регистрация</a>
+      <a class="p-2 text-dark" href="{% url 'main:login' %}">Вход</a>
+  </div>
+  <div class="row">
+
+      <div class="container">
+      {% bootstrap_messages %}
+      {% block content %}
+      {% endblock %}
+      </div>
+
+
+  </div>
+
+
+</div>
+
+</body>
+</html>
+
+
